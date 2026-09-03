@@ -45,7 +45,7 @@ public class OwnerRepositoryJdbc implements OwnerRepository {
             try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     // Le asignamos ese ID numérico generado a nuestro objeto Java
-                    owner.setId((int) generatedKeys.getLong(1));
+                    owner.setId((Long) generatedKeys.getLong(1));
                 }
             }
 
@@ -142,7 +142,7 @@ public class OwnerRepositoryJdbc implements OwnerRepository {
 
     @Override
     public Optional<Owner> findByIdentificationNumber(String identificationNumber) {
-        String sql = "SELECT * FROM owners WHERE identification_number = ?";
+        String sql = "SELECT * FROM owners WHERE document_number = ?";
 
         try (Connection conn = ConnectionFactory.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 
@@ -155,7 +155,7 @@ public class OwnerRepositoryJdbc implements OwnerRepository {
             }
 
         } catch (SQLException e) {
-            throw new RuntimeException("Error al buscar por documento de identificación", e);
+            throw new RuntimeException("Error al buscar por documento de identificación");
         }
 
         return Optional.empty();
@@ -164,11 +164,11 @@ public class OwnerRepositoryJdbc implements OwnerRepository {
     /*    /**
     * Método auxiliar privado (Helper). Mapea las columnas de la tabla 'owners'
     * a un objeto de la entidad Owner.
-    */
-        private Owner mapResultSetToOwner(ResultSet rs) throws SQLException {
+     */
+    private Owner mapResultSetToOwner(ResultSet rs) throws SQLException {
         Owner owner = new Owner();
 
-        owner.setId((int) rs.getLong("id"));
+        owner.setId((Long) rs.getLong("id"));
         owner.setIdentificationType(rs.getString("identification_type")); // Si usas Enum: IdentificationType.valueOf(rs.getString("identification_type"))
         owner.setDocumentNumber(rs.getString("document_number"));
         owner.setFullName(rs.getString("full_name"));

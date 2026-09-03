@@ -2,7 +2,7 @@ CREATE DATABASE db_vetcare;
 USE db_vetcare;
 
 CREATE TABLE owners (
-id int primary key,
+id int primary key auto_increment,
 identification_type varchar(25),
 document_number varchar(25) UNIQUE,
 full_name varchar (75),
@@ -14,7 +14,7 @@ registered_date date
 );
 
 CREATE TABLE pets (
-id int primary key,
+id int primary key auto_increment,
 owner_id int,
 foreign key (owner_id) references owners (id),
 name varchar (25),
@@ -28,7 +28,7 @@ registered_date date
 );
 
 CREATE TABLE veterinarians(
-id int primary key,
+id int primary key auto_increment,
 document_number varchar (25) UNIQUE,
 full_name varchar (75),
 lisence_number varchar (25) UNIQUE,
@@ -39,7 +39,7 @@ state boolean
 );
 
 CREATE TABLE appointments (
-id int primary key,
+id int primary key auto_increment,
 pet_id int,
 foreign key (pet_id) references pets (id),
 veterinarian_id int,
@@ -52,7 +52,7 @@ created_date date
 );
 
 CREATE TABLE medical_records(
-id int primary key,
+id int primary key auto_increment,
 appointment_id int,
 foreign key (appointment_id) references appointments (id),
 pet_id int,
@@ -68,7 +68,7 @@ status varchar (25)
 );
 
 CREATE TABLE medicines (
-id int primary key,
+id int primary key auto_increment,
 medicine_code varchar (30) UNIQUE,
 medicine_name varchar (30),
 presentation varchar (25),
@@ -81,7 +81,7 @@ registered_date date
 );
 
 CREATE TABLE medical_record_medicines (
-id int primary key,
+id int primary key auto_increment,
 medical_record_id int,
 foreign key (medical_record_id) references medical_records (id),
 medicine_id int,
@@ -90,7 +90,7 @@ quantity_used int
 );
 
 CREATE TABLE users (
-id int primary key,
+id int primary key auto_increment,
 username varchar (25) UNIQUE,
 password varchar (30),
 role varchar (40),

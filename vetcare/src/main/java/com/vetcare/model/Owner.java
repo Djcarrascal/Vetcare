@@ -5,14 +5,14 @@
 package com.vetcare.model;
 
 import java.sql.Date;
-import java.time.LocalDate;
 
 /**
  *
  * @author davidcarrascal
  */
 public class Owner {
-    private int id;
+
+    private Long id;
     private String identificationType;
     private String identificationNumber;
     private String fullname;
@@ -22,7 +22,7 @@ public class Owner {
     private boolean active;
     private Date registeredDate;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -41,7 +41,7 @@ public class Owner {
     public String getPhone() {
         return phone;
     }
-    
+
     public String getEmail() {
         return email;
     }
@@ -58,7 +58,7 @@ public class Owner {
         return registeredDate;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -77,8 +77,8 @@ public class Owner {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-    
-    public void setEmail(String email){
+
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -94,19 +94,16 @@ public class Owner {
         this.registeredDate = registeredDate;
     }
 
-    public void setDocumentNumber(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void setDocumentNumber(String identificationNumber) {
+        this.identificationNumber = identificationNumber;
     }
 
-    public void setFullName(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void setFullName(String fullName) {
+        this.fullname = fullName;
     }
 
-    public void setState(boolean aBoolean) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void setState(boolean active) {
+        this.active = active;
     }
-    
-    
-    
-    
+
 }
